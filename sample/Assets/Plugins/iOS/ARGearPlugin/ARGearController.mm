@@ -99,8 +99,13 @@
     [_camera startCamera];
 
     _argMedia = [[ARGMedia alloc] init];
+    [self setupARGMedia];
+}
+
+- (void)setupARGMedia {
     [_argMedia setVideoConnection:[_camera videoConnection]];
     [_argMedia setVideoDevice:[_camera device]];
+    [_argMedia setMediaRatio:ARGMediaRatio_16x9];
     [_argMedia setVideoDeviceOrientation:[_camera videoOrientation]];
 }
 
@@ -303,8 +308,11 @@
 -(void)changeCameraFacing {
     [_argSession pause];
 
+    __weak ARGearController *weakSelf = self;
     [_camera toggleCamera:^{
-        [_argSession run];
+        [self setupARGMedia];
+        
+        [[weakSelf argSession] run];
     }];
 }
 
