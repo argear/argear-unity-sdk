@@ -12,6 +12,12 @@ public class BeautyLayoutEvent : MonoBehaviour
     public GameObject BeautyPanel;
     public BeautyScrollController controller;
     
+    void OnEnable()
+    {
+        ARGearManager.Instance.ClearContents(ARGEnum.ContentsType.ARGItem);
+        ARGearManager.Instance.ClearContents(ARGEnum.ContentsType.Bulge);
+    }
+
     void Start()
     {
         ARGearManager.Instance.SetBeauty(SampleManager.Instance.BeautyDataCustom);

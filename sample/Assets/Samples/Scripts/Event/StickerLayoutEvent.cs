@@ -9,7 +9,12 @@ public class StickerLayoutEvent : MonoBehaviour
 {
     public GameObject FunctionPanel;
     public GameObject StickerPanel;
-    
+
+    void OnEnable()
+    {
+        ARGearManager.Instance.ClearContents(ARGEnum.ContentsType.Bulge);
+    }
+
     void Start()
     {
         var buttonArray = this.GetComponentsInChildren<Button>();

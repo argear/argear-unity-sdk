@@ -8,6 +8,11 @@ public class BulgeLayoutEvent : MonoBehaviour
     public GameObject FunctionPanel;
     public GameObject BulgePanel;
 
+    void OnEnable()
+    {
+        ARGearManager.Instance.ClearContents(ARGEnum.ContentsType.ARGItem);
+    }
+
     void Start()
     {
         var buttonArray = this.GetComponentsInChildren<Button>();
